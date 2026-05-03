@@ -1,0 +1,87 @@
+.profile {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  animation: fadeUp 0.3s ease;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 36px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+}
+
+.profile-big-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #0a0a0a;
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-info h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.pro-badge {
+  display: inline-block;
+  background-color: var(--accent);
+  color: #0a0a0a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-family: 'Syne', sans-serif;
+  width: fit-content;
+}
+
+.profile-email {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.profile-listings {
+  margin-top: 48px;
+}
+
+.profile-listings h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 640px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .pro-badge {
+    margin: 0 auto;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

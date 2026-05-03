@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import api from '../services/api'
 import { useAuth } from '../context/AuthContext'
 import ListingCard from '../components/ListingCard'
+import '../styles/Dashboard.css'
 
 function Dashboard() {
   const { user } = useAuth()
@@ -27,17 +28,22 @@ function Dashboard() {
     }
   }
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p style={{ padding: '64px 24px', color: 'var(--text-muted)' }}>Loading...</p>
 
   return (
     <div className="dashboard">
       <div className="dashboard-header">
         <h1>My Dashboard</h1>
-        <Link to="/add-listing" className="nav-btn">+ Add Listing</Link>
       </div>
+      <p className="dashboard-subtitle">
+        {listings.length} listing{listings.length !== 1 ? 's' : ''} published
+      </p>
 
       {listings.length === 0 && (
-        <p>You have no listings yet. <Link to="/add-listing">Add one!</Link></p>
+        <div className="dashboard-empty">
+          <p>You haven't added any listings yet.</p>
+          <Link to="/add-listing" className="btn-primary">Add your first listing</Link>
+        </div>
       )}
 
       <div className="card-grid">

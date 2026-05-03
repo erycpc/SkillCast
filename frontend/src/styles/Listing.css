@@ -1,0 +1,204 @@
+.listing {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  animation: fadeUp 0.3s ease;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 40px;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.listing-header {
+  margin-bottom: 32px;
+}
+
+.listing .category {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.listing h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.listing .description {
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.listing-owner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 32px;
+}
+
+.listing-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #0a0a0a;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  flex-shrink: 0;
+}
+
+.listing-owner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.listing-owner-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.listing-owner-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.listing .skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 48px;
+}
+
+.listing .skill-tag {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+/* ── Reviews ── */
+.reviews {
+  border-top: 1px solid var(--border);
+  padding-top: 40px;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.reviews h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.review-count {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.review {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.review:hover {
+  border-color: #333333;
+}
+
+.review-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--border);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+}
+
+.review-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.review-stars {
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.review-comment {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.no-reviews {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 40px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 640px) {
+  .listing h1 {
+    font-size: 2rem;
+  }
+}

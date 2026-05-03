@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../services/api'
 import { useAuth } from '../context/AuthContext'
-
+import '../styles/Auth.css'
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
@@ -30,28 +30,35 @@ function Login() {
 
   return (
     <div className="auth">
-      <h1>Welcome Back</h1>
-      <p className="subtitle">Login to your account</p>
+      <span className="auth-badge">✦ Welcome back</span>
+      <h1>Login to your account</h1>
+      <p className="subtitle">Good to see you again.</p>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="john@example.com"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Your password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? 'Logging in...' : 'Login →'}
         </button>
       </form>
       <p className="switch">Don't have an account? <Link to="/signup">Sign Up</Link></p>

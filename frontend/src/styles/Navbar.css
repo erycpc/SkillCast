@@ -1,0 +1,111 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background-color: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-btn {
+  background-color: var(--accent) !important;
+  color: #0a0a0a !important;
+  padding: 8px 18px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-family: 'Syne', sans-serif !important;
+  font-size: 0.82rem !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+.nav-btn:hover {
+  opacity: 0.85 !important;
+  transform: translateY(-1px) !important;
+  color: #0a0a0a !important;
+}
+
+.nav-user {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.nav-user span {
+  color: var(--text-primary);
+}
+
+.dashboard {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.dashboard:hover {
+  color: var(--text-primary);
+}
+
+.nav-logout {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-logout:hover {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  .nav-user,
+  .dashboard {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+}
