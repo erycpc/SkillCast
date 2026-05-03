@@ -4,13 +4,29 @@ import { MdEmail } from 'react-icons/md'
 import { FaWhatsapp, FaDiscord } from 'react-icons/fa'
 import api from '../services/api'
 import '../styles/Listing.css'
+import { useAuth } from '../context/AuthContext'
 
 function Listing() {
+  const { user } = useAuth()
   const { id } = useParams()
   const [listing, setListing] = useState(null)
   const [reviews, setReviews] = useState([])
+  const [rating, setRating] = useState(5)
+  const [comment, setComment] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await api.post(`/api/reviews/${id}`, { rating, comment })
+      setReviews([...reviews, res.data])
+      setComment('')
+      setRating(5)
+    } catch (err) {
+      alert('Failed to submit review')
+    }
+  }
 
   useEffect(() => {
     api.get(`/api/listings/${id}`)
@@ -110,6 +126,24 @@ function Listing() {
             <p className="review-comment">{review.comment}</p>
           </div>
         ))}
+        {user && (
+        <form onSubmit={handleReviewSubmit} className="review-form">
+        <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+          <option value={5}>★★★★★ — 5</option>
+          <option value={4}>★★★★☆ — 4</option>
+          <option value={3}>★★★☆☆ — 3</option>
+          <option value={2}>★★☆☆☆ — 2</option>
+          <option value={1}>★☆☆☆☆ — 1</option>
+        </select>
+        <textarea
+          placeholder="Write your review..."
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          required
+        />
+        <button type="submit">Submit Review</button>
+      </form>
+      )}
       </div>
     </div>
   )
