@@ -25,6 +25,11 @@ const listingSchema = new mongoose.Schema({
   isFeatured: {
     type: Boolean,
     default: false
+  },
+  contact: {
+    email: { type: String, default: '' },
+    whatsapp: { type: String, default: '' },
+    discord: { type: String, default: '' }
   }
 }, { timestamps: true })
 
