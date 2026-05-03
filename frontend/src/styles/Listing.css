@@ -91,6 +91,11 @@
   color: var(--text-muted);
 }
 
+.contact-btn {
+  display: inline-block;
+  margin-bottom: 32px;
+}
+
 .listing .skills {
   display: flex;
   flex-wrap: wrap;
@@ -195,6 +200,54 @@
   padding: 40px;
   border: 1px dashed var(--border);
   border-radius: var(--radius);
+}
+
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.contact-btn.email {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.contact-btn.email:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.contact-btn.whatsapp {
+  background-color: #1a3a1a;
+  border: 1px solid #2a5a2a;
+  color: #4ade80;
+}
+
+.contact-btn.discord {
+  background-color: #1a1a3a;
+  border: 1px solid #2a2a5a;
+  color: #818cf8;
 }
 
 @media (max-width: 640px) {

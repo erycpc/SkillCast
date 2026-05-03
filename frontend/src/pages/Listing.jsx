@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { MdEmail } from 'react-icons/md'
+import { FaWhatsapp, FaDiscord } from 'react-icons/fa'
 import api from '../services/api'
 import '../styles/Listing.css'
 
@@ -29,7 +31,6 @@ function Listing() {
   if (error) return <p style={{ padding: '64px 24px', color: 'var(--error)' }}>{error}</p>
 
   const safeSkills = Array.isArray(listing?.skills) ? listing.skills : []
-
   const renderStars = (rating) => '★'.repeat(rating) + '☆'.repeat(5 - rating)
 
   return (
@@ -53,6 +54,29 @@ function Listing() {
           </div>
         </div>
       )}
+
+      <div className="contact-buttons">
+        {listing.contact?.email && (
+          <a href={`mailto:${listing.contact.email}`} className="contact-btn email">
+            <MdEmail size={16} /> Email
+          </a>
+        )}
+        {listing.contact?.whatsapp && (
+          
+           <a href={`https://wa.me/${listing.contact.whatsapp.replace(/\D/g, '')}`}
+            target="_blank"
+            rel="noreferrer"
+            className="contact-btn whatsapp"
+          >
+            <FaWhatsapp size={16} /> WhatsApp
+          </a>
+        )}
+        {listing.contact?.discord && (
+          <div className="contact-btn discord">
+            <FaDiscord size={16} /> Discord: {listing.contact.discord}
+          </div>
+        )}
+      </div>
 
       <div className="skills">
         {safeSkills.map((skill, index) => (
