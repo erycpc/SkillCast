@@ -8,6 +8,8 @@ function Home() {
   const [listings, setListings] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('')
 
   useEffect(() => {
     api.get('/api/listings')
@@ -20,6 +22,12 @@ function Home() {
         setLoading(false)
       })
   }, [])
+
+  const filtered = listings.filter((listing) => {
+    const matchesSearch = listing.title.toLowerCase().includes(search.toLowerCase())
+    const matchesCategory = category === '' || listing.category === category
+    return matchesSearch && matchesCategory
+  })
 
   return (
     <div className="home">
@@ -61,6 +69,29 @@ function Home() {
           <Link to="/add-listing" className="btn-outline">+ Add yours</Link>
         </div>
 
+        <div className="filters">
+          <input
+            type="text"
+            placeholder="Search skills..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="search-input"
+          />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="category-select"
+          >
+            <option value="">All categories</option>
+            <option value="Music">Music</option>
+            <option value="Tech">Tech</option>
+            <option value="Cooking">Cooking</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Art">Art</option>
+            <option value="Language">Language</option>
+          </select>
+        </div>
+
         {loading && (
           <div className="loading-grid">
             {[1,2,3].map((n) => <div key={n} className="skeleton-card" />)}
@@ -69,18 +100,17 @@ function Home() {
 
         {error && <p className="error-state">{error}</p>}
 
-        {!loading && listings.length === 0 && (
+        {!loading && filtered.length === 0 && (
           <div className="empty-state">
             <p className="empty-icon">🎯</p>
-            <h3>No listings yet</h3>
-            <p>Be the first to share a skill with the community!</p>
-            <Link to="/add-listing" className="btn-primary">Add a listing</Link>
+            <h3>No listings found</h3>
+            <p>Try a different search or category</p>
           </div>
         )}
 
-        {!loading && listings.length > 0 && (
+        {!loading && filtered.length > 0 && (
           <div className="card-grid">
-            {listings.map((listing) => (
+            {filtered.map((listing) => (
               <Link key={listing._id} to={`/listing/${listing._id}`}>
                 <ListingCard
                   id={listing._id}
