@@ -70,4 +70,74 @@ router.get('/me', async (req, res) => {
   }
 })
 
+// PUT /api/auth/update - update logged in user
+router.put('/update', auth, async (req, res) => {
+  try {
+    const { name, email, password } = req.body
+    const user = await User.findById(req.user.id)
+    if (!user) return res.status(404).json({ message: 'User not found' })
+
+    if (name) user.name = name
+    if (email) user.email = email
+    if (password) {
+      const salt = await bcrypt.genSalt(10)
+      user.password = await bcrypt.hash(password, salt)
+    }
+
+    await user.save()
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      isPro: user.isPro
+    })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// DELETE /api/auth/delete - delete logged in user
+router.delete('/delete', auth, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id)
+    res.json({ message: 'Account deleted' })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})// PUT /api/auth/update - update logged in user
+router.put('/update', auth, async (req, res) => {
+  try {
+    const { name, email, password } = req.body
+    const user = await User.findById(req.user.id)
+    if (!user) return res.status(404).json({ message: 'User not found' })
+
+    if (name) user.name = name
+    if (email) user.email = email
+    if (password) {
+      const salt = await bcrypt.genSalt(10)
+      user.password = await bcrypt.hash(password, salt)
+    }
+
+    await user.save()
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      isPro: user.isPro
+    })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// DELETE /api/auth/delete - delete logged in user
+router.delete('/delete', auth, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id)
+    res.json({ message: 'Account deleted' })
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
 module.exports = router
