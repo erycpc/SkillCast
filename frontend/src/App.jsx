@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Dashboard from './pages/Dashboard'
+import Sidebar from './components/Sidebar'
 import './App.css'
 
 function App() {
@@ -25,12 +26,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/add-listing" element={
           <ProtectedRoute>
+            <Sidebar />
             <AddListing />
           </ProtectedRoute>
         } />
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/:id" element={
+          <ProtectedRoute>
+            <Sidebar />
+            <Profile />
+          </ProtectedRoute>
+        } />
         <Route path="/dashboard" element={
           <ProtectedRoute>
+            <Sidebar />
             <Dashboard />
           </ProtectedRoute>
         } />
