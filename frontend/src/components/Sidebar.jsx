@@ -18,17 +18,19 @@ function Sidebar() {
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
 
+  if (!user) return null
+  
+  const navItems = [
+    { to: '/dashboard', icon: <MdDashboard size={20} />, label: 'My Listings' },
+    { to: '/add-listing', icon: <MdAddCircleOutline size={20} />, label: 'Add Listing' },
+    { to: `/profile/${user?._id || user?.id}`, icon: <MdPerson size={20} />, label: 'My Profile' },
+    { to: '/settings', icon: <MdSettings size={20} />, label: 'Settings' },
+  ]
+
   const handleLogout = () => {
     logout()
     navigate('/')
   }
-
-  const navItems = [
-    { to: '/dashboard', icon: <MdDashboard size={20} />, label: 'My Listings' },
-    { to: '/add-listing', icon: <MdAddCircleOutline size={20} />, label: 'Add Listing' },
-    { to: `/profile/${user?.id || user?.id}`, icon: <MdPerson size={20} />, label: 'My Profile' },
-    { to: '/settings', icon: <MdSettings size={20} />, label: 'Settings' },
-  ]
 
   return (
     <>
