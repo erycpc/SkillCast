@@ -3,12 +3,12 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
+const auth = require('../middleware/auth')
 
 // POST /api/auth/signup
 router.post('/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body
-
     const existing = await User.findOne({ email })
     if (existing) return res.status(400).json({ message: 'Email already in use' })
 
@@ -17,7 +17,6 @@ router.post('/signup', async (req, res) => {
 
     const user = new User({ name, email, password: hashedPassword })
     await user.save()
-
     res.status(201).json({ message: 'Account created successfully' })
   } catch (err) {
     res.status(500).json({ message: err.message })
@@ -28,7 +27,6 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
-
     const user = await User.findOne({ email })
     if (!user) return res.status(400).json({ message: 'Invalid credentials' })
 
@@ -56,7 +54,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-// GET /api/auth/me - get logged in user
+// GET /api/auth/me
 router.get('/me', async (req, res) => {
   try {
     const token = req.header('Authorization')?.replace('Bearer ', '')
@@ -70,7 +68,18 @@ router.get('/me', async (req, res) => {
   }
 })
 
-// PUT /api/auth/update - update logged in user
+// GET /api/auth/user/:id - get public profile
+router.get('/user/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password')
+    if (!user) return res.status(404).json({ message: 'User not found' })
+    res.json(user)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+})
+
+// PUT /api/auth/update
 router.put('/update', auth, async (req, res) => {
   try {
     const { name, email, password } = req.body
@@ -96,41 +105,7 @@ router.put('/update', auth, async (req, res) => {
   }
 })
 
-// DELETE /api/auth/delete - delete logged in user
-router.delete('/delete', auth, async (req, res) => {
-  try {
-    await User.findByIdAndDelete(req.user.id)
-    res.json({ message: 'Account deleted' })
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})// PUT /api/auth/update - update logged in user
-router.put('/update', auth, async (req, res) => {
-  try {
-    const { name, email, password } = req.body
-    const user = await User.findById(req.user.id)
-    if (!user) return res.status(404).json({ message: 'User not found' })
-
-    if (name) user.name = name
-    if (email) user.email = email
-    if (password) {
-      const salt = await bcrypt.genSalt(10)
-      user.password = await bcrypt.hash(password, salt)
-    }
-
-    await user.save()
-    res.json({
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      isPro: user.isPro
-    })
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-})
-
-// DELETE /api/auth/delete - delete logged in user
+// DELETE /api/auth/delete
 router.delete('/delete', auth, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.user.id)
