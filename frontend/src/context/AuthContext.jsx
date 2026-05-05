@@ -9,20 +9,20 @@ export function AuthProvider({ children }) {
   })
 
   const [token, setToken] = useState(() => {
-    return localStorage.getItem('token') || null
+    return localStorage.getItem('access_token') || null
   })
 
   const login = (userData, tokenData) => {
     setUser(userData)
     setToken(tokenData)
-    localStorage.setItem('token', tokenData)
+    localStorage.setItem('access_token', tokenData)
     localStorage.setItem('user', JSON.stringify(userData))
   }
 
   const logout = () => {
     setUser(null)
     setToken(null)
-    localStorage.removeItem('token')
+    localStorage.removeItem('access_token')
     localStorage.removeItem('user')
   }
 

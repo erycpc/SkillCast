@@ -18,7 +18,7 @@ function Navbar() {
       <div className="nav-links">
         {user ? (
           <>
-            <span className="nav-user">Hey, <span>{user.name.split(' ')[0]}</span></span>
+            <span className="nav-user">Hey, <span>{user?.name?.split(' ')[0]}</span></span>
             <Link to="/dashboard" className="dashboard">Dashboard</Link>
             <Link to="/add-listing" className="nav-btn">+ Add Listing</Link>
             <button className="nav-logout" onClick={handleLogout}>Logout</button>

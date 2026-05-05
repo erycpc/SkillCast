@@ -13,6 +13,8 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Dashboard from './pages/Dashboard'
 import Sidebar from './components/Sidebar'
+import Settings from './pages/Settings'
+import './styles/Settings.css'
 import './App.css'
 
 function App() {
@@ -41,6 +43,12 @@ function App() {
             <Sidebar />
             <Dashboard />
           </ProtectedRoute>
+        } />
+        <Route path="/settings" element={
+          <ProtectedRoute>
+            <Sidebar />
+            <Settings />
+            </ProtectedRoute>
         } />
       </Routes>
     </>
