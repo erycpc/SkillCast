@@ -27,6 +27,7 @@ function SignUp() {
 
   return (
     <div className="auth">
+      <Link to="/" className="auth-logo">Skill Cast</Link>
       <span className="auth-badge">✦ Join SkillCast</span>
       <h1>Create your account</h1>
       <p className="subtitle">Share what you know. Learn what you don't.</p>

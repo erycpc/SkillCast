@@ -30,6 +30,7 @@ function Login() {
 
   return (
     <div className="auth">
+      <Link to="/" className="auth-logo">Skill Cast</Link>
       <span className="auth-badge">✦ Welcome back</span>
       <h1>Login to your account</h1>
       <p className="subtitle">Good to see you again.</p>
