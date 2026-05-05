@@ -60,6 +60,9 @@ function Dashboard() {
               />
             </Link>
             <div className="dashboard-actions">
+              <Link to={`/edit-listing/${listing._id}`} className="btn-edit">
+                Edit
+              </Link>
               <button
                 className="btn-delete"
                 onClick={() => handleDelete(listing._id)}

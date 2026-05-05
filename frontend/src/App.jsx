@@ -15,6 +15,7 @@ import Dashboard from './pages/Dashboard'
 import Sidebar from './components/Sidebar'
 import Settings from './pages/Settings'
 import './styles/Settings.css'
+import EditListing from './pages/EditListing'
 import './App.css'
 
 function App() {
@@ -36,6 +37,12 @@ function App() {
           <ProtectedRoute>
             <Sidebar />
             <Profile />
+          </ProtectedRoute>
+        } />
+        <Route path="/edit-listing/:id" element={
+          <ProtectedRoute>
+            <Sidebar />
+            <EditListing />
           </ProtectedRoute>
         } />
         <Route path="/dashboard" element={
