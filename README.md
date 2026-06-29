@@ -235,7 +235,7 @@ http://localhost:5173
 
 Built by **erycpc** — learning full-stack development one project at a time.
 
-- GitHub: [@yourusername](https://github.com/erycpc)
+- GitHub: [@erycpc](https://github.com/erycpc)
 
 ---
 
